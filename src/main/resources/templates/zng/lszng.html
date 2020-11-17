@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="10">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/google.css}" />
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <style>
+    .blg-div{
+        height: 215px;
+    }
+    p{
+        margin: 0;
+    }
+</style>
+
+</head>
+
+<body>
+<div class="small-cabinet">
+    <div class="in-left">
+        <div class="blg-div" style="height: 278px"></div>
+        <div class="blg-div yellow click" data-id="01" style="height: 278px"><span>01</span><p></p></div>
+    </div>
+</div>
+<div class="big-cabinet">
+    <div class="in-left">
+        <div class="sm-div yellow click" data-id="02"><span>02</span><p></p></div>
+        <div class="sm-div yellow click" data-id="03"><span>03</span><p></p></div>
+        <div class="sm-div yellow click" data-id="04"><span>04</span><p></p></div>
+        <div class="xs-div yellow click" data-id="05"><span>05</span><p></p></div>
+        <div class="xs-div yellow click" data-id="06"><span>06</span><p></p></div>
+        <div class="lg-div yellow click" data-id="07"><span>07</span><p></p></div>
+    </div>
+    <div class="in-right">
+        <div class="sm-div yellow click" data-id="08"><span>08</span><p></p></div>
+        <div class="sm-div yellow click" data-id="09"><span>09</span><p></p></div>
+        <div class="sm-div yellow click" data-id="10"><span>10</span><p></p></div>
+        <div class="xs-div yellow click" data-id="11"><span>11</span><p></p></div>
+        <div class="xs-div yellow click" data-id="12"><span>12</span><p></p></div>
+        <div class="lg-div yellow click" data-id="13"><span>13</span><p></p></div>
+    </div>
+</div>
+<div class="big-cabinet">
+    <div class="in-left">
+        <div class="sm-div yellow click" data-id="14"><span>14</span><p></p></div>
+        <div class="sm-div yellow click" data-id="15"><span>15</span><p></p></div>
+        <div class="sm-div yellow click" data-id="16"><span>16</span><p></p></div>
+        <div class="xs-div yellow click" data-id="17"><span>17</span><p></p></div>
+        <div class="xs-div yellow click" data-id="18"><span>18</span><p></p></div>
+        <div class="lg-div yellow click" data-id="19"><span>19</span><p></p></div>
+    </div>
+    <div class="in-right">
+        <div class="sm-div yellow click" data-id="20"><span>20</span><p></p></div>
+        <div class="sm-div yellow click" data-id="21"><span>21</span><p></p></div>
+        <div class="sm-div yellow click" data-id="22"><span>22</span><p></p></div>
+        <div class="xs-div yellow click" data-id="23"><span>23</span><p></p></div>
+        <div class="xs-div yellow click" data-id="24"><span>24</span><p></p></div>
+        <div class="lg-div yellow click" data-id="25"><span>25</span><p></p></div>
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        getData();
+        /*$(".click").click(function(){
+
+            //if($(this).hasClass('red')) return alert("当前所选柜子已被占用!");
+            var wz ="LS-" + $(this).attr("data-id");
+            var sx =  confirm("是否分配到"+wz+"?");
+            if(sx){
+                // document.mainform.action ="rywpclcz.jsp?cz=yes&ccwz="+ccwz;
+                window.parent.parent.document.getElementById("mainframe").src = '<%=webpath %>/zng_wz_doAdd.jsp?rybh=<%=rybh%>&ajbh=<%=ajbh%>&str=<%=str %>&cz=zng&ccwz='+wz;
+            }
+            $(this).removeClass("yellow").addClass("red");
+        });*/
+
+    });
+
+
+    function getData(){
+        $.ajax({
+            url  :'/lsdata',
+            type :'post',
+            dataType:'json',
+            success: function (data){
+
+                var  list = eval(data);
+
+                for(var i=0;i<list.length;i++){
+                    console.log(list[i]);
+                    $("div[data-id='"+list[i].ZNGBH+"']").removeClass("yellow").addClass("red").find('p').text(list[i].AJMC);
+                }
+            }
+        });
+    }
+</script>
+
+</html>

@@ -2,6 +2,7 @@ package com.dataql.godstady.controller;
 
 import com.dataql.godstady.mapper.ZzwInfoMapper;
 import com.dataql.godstady.rxtx.RXTXtest;
+import com.dataql.godstady.util.HttpUtil;
 import gnu.io.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class RxtxController {
 
     @Autowired
     private ZzwInfoMapper mapper;
-
+    //打开串口
     public final SerialPort serialPort = openSerialPort("COM3",115200);
 
     @RequestMapping("/sync1")
@@ -58,6 +59,7 @@ public class RxtxController {
                     if (split!=null&&split.length>0){
                         String zngbh = mapper.getZngbh(split[0]);
                         System.out.println(zngbh);
+                       // HttpUtil.sendGet("127.0.0.1:7788/PersonInfoQuery/"+zngbh,"");
                     }
                     System.out.println(str);
 
