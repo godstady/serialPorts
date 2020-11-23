@@ -79,7 +79,13 @@
 		     <groupId>org.springframework.boot</groupId> 
 		     <artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>gnu</groupId><!--随便填的-->
+			<artifactId>RXTXcomm</artifactId><!--jar包名字-->
+			<version>1.2.8</version><!--版本号-->
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/jar/RXTXcomm.jar</systemPath><!--路径-->
+		</dependency>
 		
 		
 	</dependencies>
@@ -89,6 +95,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.dataql.godstady.QrcodeApplication</mainClass>
+					<includeSystemScope>true</includeSystemScope><!--外部进行打包-->
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal><!---->
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

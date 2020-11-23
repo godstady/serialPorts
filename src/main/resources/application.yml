@@ -42,7 +42,10 @@ logging:
           mapper: debug
 spring:
   datasource:
-    url:  jdbc:oracle:thin:@127.0.0.1:1521:orclone
+
+
+
+    url:  jdbc:oracle:thin:@192.168.1.166:1521:orclone
     username: tzsawp
     password: tzsawp
     driver-class-name: oracle.jdbc.OracleDriver
